@@ -1,0 +1,16 @@
+RabbitMQ Topic exchange proof of concept and test application.
+The app supports a 'publisher' and a 'subscriber' Spring @Profile.
+
+example launch configurations:
+
+./gradlew bootrun -Dspring.profiles.active=subscriber -Dsubscriber.exchange=enfos.test.topic -Dsubscriber.queue=custXService -Dsubscriber.routingKey=custX.#
+
+./gradlew bootrun -Dspring.profiles.active=subscriber -Dsubscriber.exchange=enfos.test.topic -Dsubscriber.queue=custZService -Dsubscriber.routingKey=custZ.#
+
+./gradlew bootrun -Dspring.profiles.active=publisher -Dpublisher.exchange=enfos.test.topic
+
+
+Added the following to build.gradle for gradle version 7.x:
+bootRun {
+	systemProperties = System.properties
+}
